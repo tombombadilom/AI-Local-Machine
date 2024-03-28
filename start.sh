@@ -16,7 +16,7 @@ elif [ -f /etc/debian_version ]; then
   else
     DEBIAN_RELEASE="$DEBIAN_VERSION"
   fi
-  sudo apt-get install valgrind
+  sudo apt-get install valgrind -y
   # Check for common bugs
   bash -n ./install/install-debian-full.sh
   valgrind --leak-check=full ./install/install-debian-full.sh
@@ -35,7 +35,7 @@ elif [ -f /etc/os-release ]; then
     else
       UBUNTU_RELEASE="$UBUNTU_VERSION"
     fi
-    sudo apt-get install valgrind
+    sudo apt-get install valgrind -y
     # Check for common bugs
     bash -n ./install/install-ubuntu-full.sh
     valgrind --leak-check=full ./install/install-ubuntu-full.sh

@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 ## check the os of the machine (arch linux, debian , ubuntu )
+if ! command -v valgrind &> /dev/null
+then
+    echo "Valgrind not installed, installing it"
+    sudo pacman -S --noconfirm valgrind
+fi
+
 if [ -f /etc/arch-release ]; then
   OS="arch"
 elif [ -f /etc/debian_version ]; then

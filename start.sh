@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
 ## check the os of the machine (arch linux, debian , ubuntu )
-if ! command -v valgrind &> /dev/null
-then
-    echo "Valgrind not installed, installing it"
-    sudo pacman -S --noconfirm valgrind
-fi
-
 if [ -f /etc/arch-release ]; then
   OS="arch"
+  sudo pacman -S --noconfirm valgrind
 elif [ -f /etc/debian_version ]; then
   OS="debian"
   DEBIAN_VERSION=$(cat /etc/debian_version | cut -d '.' -f1 | cut -d '/' -f1)
@@ -17,13 +12,14 @@ elif [ -f /etc/debian_version ]; then
   else
     DEBIAN_RELEASE="trixie"
   fi
+  sudo apt-get install valgrind
   # Check for common bugs
   bash -n ./install/install-debian-full.sh
   valgrind --leak-check=full ./install/install-debian-full.sh
 elif [ -f /etc/os-release ]; then
   . /etc/os-release
+  OS="$ID"
   if [ "$ID" == "ubuntu" ]; then
-    OS="ubuntu"
     UBUNTU_VERSION=$(echo $VERSION_ID | cut -d '.' -f1)
     if [ "$UBUNTU_VERSION" -lt "20" ]; then
       echo "Ubuntu version not supported, please use Ubuntu 20.04 (Focal) or higher"
@@ -31,10 +27,17 @@ elif [ -f /etc/os-release ]; then
     else
       UBUNTU_RELEASE="focal"
     fi
+    sudo apt-get install valgrind
     # Check for common bugs
     bash -n ./install/install-ubuntu-full.sh
     valgrind --leak-check=full ./install/install-ubuntu-full.sh
+  else
+    echo "Unsupported Linux distribution, please install Valgrind manually"
+    exit 1
   fi
+else
+  echo "Unknown Linux distribution, please install Valgrind manually"
+  exit 1
 fi
 
 read -p "Do you want to install only the AI applications or the whole Hyprland Display with the AI chat in it? (apps/full) " answer
@@ -59,5 +62,4 @@ elif [[ "${answer}" == "full" ]]; then
 else
   echo "Please answer with 'apps' or 'full'"
 fi
-
 

@@ -9,3 +9,4 @@ fi
 git https://github.com/JaKooLit/Debian-Hyprland.git
 cd Debian-Hyprland
 
+source install.sh

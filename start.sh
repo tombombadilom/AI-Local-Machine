@@ -11,6 +11,9 @@ elif [ -f /etc/debian_version ]; then
   else
     DEBIAN_RELEASE="trixie"
   fi
+  # Check for common bugs
+  bash -n ./install/install-debian-full.sh
+  valgrind --leak-check=full ./install/install-debian-full.sh
 elif [ -f /etc/os-release ]; then
   . /etc/os-release
   if [ "$ID" == "ubuntu" ]; then
@@ -22,22 +25,33 @@ elif [ -f /etc/os-release ]; then
     else
       UBUNTU_RELEASE="focal"
     fi
+    # Check for common bugs
+    bash -n ./install/install-ubuntu-full.sh
+    valgrind --leak-check=full ./install/install-ubuntu-full.sh
   fi
 fi
 
 read -p "Do you want to install only the AI applications or the whole Hyprland Display with the AI chat in it? (apps/full) " answer
 if [[ "${answer}" == "apps" ]]; then
-  source ./install/install-apps.sh
+  bash -n ./install/install-apps.sh
+  valgrind --leak-check=full ./install/install-apps.sh
 elif [[ "${answer}" == "full" ]]; then
   if [ "$OS" == "debian" ] && [ "$DEBIAN_VERSION" -eq "10" ]; then
-    source ./install/install-debian-full.sh
+    echo "debian install"
+    bash -n ./install/install-debian-full.sh
+    valgrind --leak-check=full ./install/install-debian-full.sh
   elif [ "$OS" == "ubuntu" ] && [ "$UBUNTU_VERSION" -eq "20" ]; then
-    source ./install/install-ubuntu-full.sh
+    echo "ubuntu install"
+    bash -n ./install/install-ubuntu-full.sh
+    valgrind --leak-check=full ./install/install-ubuntu-full.sh
   else
-    source ./install/install-full.sh
+    echo "Arch Linux install"
+    bash -n ./install/install-full.sh
+    valgrind --leak-check=full ./install/install-full.sh
   fi
 
 else
   echo "Please answer with 'apps' or 'full'"
 fi
+
 

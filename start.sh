@@ -6,6 +6,9 @@ if [ -f /etc/arch-release ]; then
 elif [ -f /etc/debian_version ]; then
   OS="debian"
   DEBIAN_VERSION=$(echo "$(cat /etc/debian_version | cut -d '/' -f1)" | cut -d '-' -f1)
+  if [ "$DEBIAN_VERSION" == "trixie" ]; then
+    DEBIAN_VERSION="13"
+  fi
   if ! [[ "$DEBIAN_VERSION" =~ ^[0-9]+$ ]]; then
     echo "Unknown Debian version, please install Valgrind manually"
     exit 1

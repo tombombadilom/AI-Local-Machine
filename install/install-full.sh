@@ -111,6 +111,7 @@ for conf in "${!config_git[@]}"; do
         else
             echo "Le répertoire .git n'existe pas. Clonage du dépôt $url..."
             # Cloner le dépôt Git dans le répertoire spécifié
+            mv "$conf" "$conf.old"
             git clone "$url" "$conf"
         fi
     else

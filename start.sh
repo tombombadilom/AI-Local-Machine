@@ -6,6 +6,9 @@ if [ -f /etc/arch-release ]; then
 elif [ -f /etc/debian_version ]; then
   OS="debian"
   DEBIAN_VERSION=$(echo "$(cat /etc/debian_version | cut -d '.' -f1)" | cut -d '/' -f1)
+  if [ "$(cat /etc/debian_version | cut -d ' ' -f2)" == "trixie" ]; then
+    DEBIAN_VERSION=13
+  fi
   if ! [[ "$DEBIAN_VERSION" =~ ^[0-9]+$ ]]; then
     echo "Unknown Debian version, please install Valgrind manually"
     exit 1
@@ -57,6 +60,10 @@ elif [[ "${answer}" == "full" ]]; then
     echo "debian install"
     bash -n ./install/install-debian-full.sh
     valgrind --leak-check=full ./install/install-debian-full.sh
+  elif [ "$OS" == "debian" ] && [ "$DEBIAN_VERSION" -eq "13" ]; then
+    echo "debian install"
+    bash -n ./install/install-debian-trixie-full.sh
+    valgrind --leak-check=full ./install/install-debian-trixie-full.sh
   elif [ "$OS" == "ubuntu" ] && [ "$UBUNTU_VERSION" -eq "20" ]; then
     echo "ubuntu install"
     bash -n ./install/install-ubuntu-full.sh
@@ -64,13 +71,5 @@ elif [[ "${answer}" == "full" ]]; then
   else
     echo "Arch Linux install"
     bash -n ./install/install-full.sh
-    valgrind --leak-check=full ./install/install-full.sh
-  fi
-
-else
-  echo "Please answer with 'apps' or 'full'"
-fi
-
-
-
+    valgrind --leak-check=full ./
 

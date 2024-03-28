@@ -4,8 +4,10 @@ set -gx XMODIFIERS @im=dbus
 set -gx QT_IM_MODULE ibus
 set -gx QT_QPA_PLATFORMTHEME qt6ct
 set -gx ELECTRON_OZONE_PLATFORM_HINT wayland
-set -gx XDG_SESION_TYPE wayland
+set -gx XDG_SESSION_TYPE wayland
 set -gx QT_QPA_PLATFORM wayland
+set -x ELECTRON_ENABLE_LOGGING true
+set -x ELECTRON_FLAGS "--enable-features=UseOzonePlatform --enable-gpu --ozone-platform=wayland"
 
 # Function to check for new git repository
 function check_directory_for_new_repository

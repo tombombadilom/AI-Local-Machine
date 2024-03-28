@@ -120,4 +120,7 @@ for conf in "${!config_git[@]}"; do
     fi
 done
 
-echo "config installation complete you better restart your compute!r"
+cp ../config/config.fish ~/.config/fish/.
+cp ../config/foot.ini ~/./config/foot/.
+source ./app-install.sh
+echo "config installation complete you better restart your computer !"

@@ -5,15 +5,12 @@ if [ -f /etc/arch-release ]; then
   sudo pacman -S --noconfirm valgrind
 elif [ -f /etc/debian_version ]; then
   OS="debian"
-  DEBIAN_VERSION=$(echo "$(cat /etc/debian_version | cut -d '.' -f1)" | cut -d '/' -f1)
-  if [ "$(cat /etc/debian_version | cut -d ' ' -f2)" == "trixie" ]; then
-    DEBIAN_VERSION=13
-  fi
+  DEBIAN_VERSION=$(echo "$(cat /etc/debian_version | cut -d '/' -f1)" | cut -d '-' -f1)
   if ! [[ "$DEBIAN_VERSION" =~ ^[0-9]+$ ]]; then
     echo "Unknown Debian version, please install Valgrind manually"
     exit 1
   fi
-  if [ "$DEBIAN_VERSION" -lt "10" ] || [ "$DEBIAN_VERSION" -ge "14" ]; then
+  if [ "$DEBIAN_VERSION" -lt "10" ] || [ "$DEBIAN_VERSION" -ge "15" ]; then
     echo "Debian version not supported, please use Debian 10 (Buster) or higher"
     exit 1
   else
@@ -71,5 +68,5 @@ elif [[ "${answer}" == "full" ]]; then
   else
     echo "Arch Linux install"
     bash -n ./install/install-full.sh
-    valgrind --leak-check=full ./
+    valgrind --leak-check=full ./install/install-full.sh
 

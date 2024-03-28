@@ -7,6 +7,15 @@ then
 fi
 
 git https://github.com/JaKooLit/Debian-Hyprland.git
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+source ~/.zshrc
+nvm install 21
+npm i -g typescript
+sudo apt install libpulse-dev libgjs-dev axel
 cd Debian-Hyprland
 
 source install.sh
+git clone https://github.com/end-4/dots-hyprland.git
+cd dots-hyprland
+source non-Arch-installer.temp.sh

@@ -5,12 +5,16 @@ if [ -f /etc/arch-release ]; then
   sudo pacman -S --noconfirm valgrind
 elif [ -f /etc/debian_version ]; then
   OS="debian"
-  DEBIAN_VERSION=$(cat /etc/debian_version | cut -d '.' -f1 | cut -d '/' -f1)
-  if [ "$DEBIAN_VERSION" -lt "13" ] || [ "$DEBIAN_VERSION" -ge "14" ]; then
+  DEBIAN_VERSION=$(echo "$(cat /etc/debian_version | cut -d '.' -f1)" | cut -d '/' -f1)
+  if ! [[ "$DEBIAN_VERSION" =~ ^[0-9]+$ ]]; then
+    echo "Unknown Debian version, please install Valgrind manually"
+    exit 1
+  fi
+  if [ "$DEBIAN_VERSION" -lt "10" ] || [ "$DEBIAN_VERSION" -ge "14" ]; then
     echo "Debian version not supported, please use Debian 10 (Buster) or higher"
     exit 1
   else
-    DEBIAN_RELEASE="trixie"
+    DEBIAN_RELEASE="$DEBIAN_VERSION"
   fi
   sudo apt-get install valgrind
   # Check for common bugs
@@ -20,12 +24,16 @@ elif [ -f /etc/os-release ]; then
   . /etc/os-release
   OS="$ID"
   if [ "$ID" == "ubuntu" ]; then
-    UBUNTU_VERSION=$(echo $VERSION_ID | cut -d '.' -f1)
+    UBUNTU_VERSION=$(echo "$(echo $VERSION_ID | cut -d '.' -f1)" | cut -d '/' -f1)
+    if ! [[ "$UBUNTU_VERSION" =~ ^[0-9]+$ ]]; then
+      echo "Unknown Ubuntu version, please install Valgrind manually"
+      exit 1
+    fi
     if [ "$UBUNTU_VERSION" -lt "20" ]; then
       echo "Ubuntu version not supported, please use Ubuntu 20.04 (Focal) or higher"
       exit 1
     else
-      UBUNTU_RELEASE="focal"
+      UBUNTU_RELEASE="$UBUNTU_VERSION"
     fi
     sudo apt-get install valgrind
     # Check for common bugs
@@ -62,4 +70,7 @@ elif [[ "${answer}" == "full" ]]; then
 else
   echo "Please answer with 'apps' or 'full'"
 fi
+
+
+
 

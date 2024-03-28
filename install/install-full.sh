@@ -92,7 +92,7 @@ fi
 
 # Définition des chemins et des URLs des dépôts Git
 declare -A config_git=(
-    ["$HOME/.config/gs"]="https://github.com/tombombadilom/ags"
+    ["$HOME/.config/ags"]="https://github.com/tombombadilom/ags"
     ["$HOME/.config/hypr"]="https://github.com/tombombadilom/hypr"
 )
 

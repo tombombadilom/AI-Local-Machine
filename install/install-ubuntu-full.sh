@@ -12,7 +12,7 @@ source ~/.bashrc
 source ~/.zshrc
 nvm install 21
 npm i -g typescript
-sudo apt install libpulse-dev libgjs-dev axel
+sudo apt install -y libpulse-dev libgjs-dev axel libtinyxml2 libgtk-mm-3.0-dev libgtksourceviewmm-3.0-dev
 cd Debian-Hyprland
 
 source install.sh

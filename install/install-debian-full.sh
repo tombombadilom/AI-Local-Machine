@@ -6,7 +6,7 @@ then
     sudo apt-get install -y git
 fi
 
-git https://github.com/JaKooLit/Debian-Hyprland.git
+git clone https://github.com/JaKooLit/Debian-Hyprland.git
 cd Debian-Hyprland
 
 source install.sh

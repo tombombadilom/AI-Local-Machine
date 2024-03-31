@@ -30,6 +30,7 @@ if [[ $REPLY =~ ^[Oo]$ ]]
 then
     git clone https://github.com/end-4/dots-hyprland.git
     cd dots-hyprland
+    sudo apt install -y libgjs-dev libpulse-dev axel libtinyxml2-dev fish foot foot-terminfo
     bash
     source ./non-Arch-installer.temp.sh
     bash

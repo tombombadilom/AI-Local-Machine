@@ -34,7 +34,7 @@ install() {
     done
 }
 ## Start install 
-install "coreutils cliphist cmake curl fuzzel rsync wget ripgrep gojq npm meson typescript gjs dart-sass axel"
+install "coreutils cliphist cmake curl onefetch fuzzel rsync wget ripgrep gojq npm meson typescript gjs dart-sass axel"
 
 # Make deps of MicroTeX
 install "tinyxml2 gtkmm3 gtksourceviewmm cairomm"

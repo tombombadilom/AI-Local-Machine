@@ -12,14 +12,14 @@ source ~/.bashrc
 source ~/.zshrc
 nvm install 21
 npm i -g typescript
-sudo apt install -y libpulse-dev libgjs-dev axel libtinyxml2-dev libgtkmm-3.0-dev libgtksourceviewmm-3.0-dev
+sudo apt install -y libpulse-dev libgjs-dev axel libtinyxml2-dev libgtkmm-3.0-dev libgtksourceviewmm-3.0-dev gir1.2-gtklayershell-0.1 libghc-gi-dbusmenugtk3-dev
 cd Debian-Hyprland
 
 source install.sh
 git clone https://github.com/end-4/dots-hyprland.git
 cd dots-hyprland
 source non-Arch-installer.temp.sh
-bash
+bashcd 
 declare -A config_git=(
     ["$HOME/.config/ags"]="https://github.com/tombombadilom/ags"
     ["$HOME/.config/hypr"]="https://github.com/tombombadilom/hypr"

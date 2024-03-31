@@ -60,7 +60,7 @@ install "polkit-gnome gnome-keyring gnome-control-center blueberry networkmanage
 install "python-pywayland python-psutil hypridle-git hyprlock-git wlogout wl-clipboard hyprpicker-git anyrun-git"
 
 ### Fonts and Themes
-install "adw-gtk3-git qt5ct qt5-wayland gradience-git fontconfig ttf-readex-pro ttf-jetbrains-mono-nerd ttf-material-symbols-variable-git ttf-space-mono-nerd fish foot starship"
+install "adw-gtk3-git nw-look-bin qt6ct qt6-wayland gradience-git fontconfig ttf-readex-pro ttf-jetbrains-mono-nerd ttf-material-symbols-variable-git ttf-space-mono-nerd fish foot starship"
 
 ### Screenshot and Recoder
 install "swappy wf-recorder grim tesseract tesseract-data-eng slurp"

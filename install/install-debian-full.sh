@@ -24,6 +24,7 @@ source ~/.zshrc
 nvm install 21
 npm i -g typescript
 sudo apt install -y foot foot-terminfo fish libpulse-dev libgjs-dev axel libtinyxml2 libgtkmm-3.0-dev libgtksourceviewmm-3.0-dev
+curl -sS https://starship.rs/install.sh | sh
 cd Debian-Hyprland
 
 source install.sh

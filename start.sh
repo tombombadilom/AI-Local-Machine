@@ -70,6 +70,6 @@ elif [[ "${answer}" == "full" ]]; then
     valgrind --leak-check=full ./install/install-ubuntu-full.sh
   else
     echo "Arch Linux install"
-    bash -n ./install/install-full.sh
-    valgrind --leak-check=full ./install/install-full.sh
+    bash -n ./install/install-arch-full.sh
+    valgrind --leak-check=full ./install/install-arch-full.sh
 

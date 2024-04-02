@@ -56,6 +56,7 @@ if [[ "${answer}" == "apps" ]]; then
   bash -n ./install/install-apps.sh
   valgrind --leak-check=full ./install/install-apps.sh
 elif [[ "${answer}" == "full" ]]; then
+  mkdir -p cache
   if [ "$OS" == "debian" ] && [ "$DEBIAN_VERSION" -eq "10" ]; then
     echo "debian install"
     bash -n ./install/install-debian-full.sh

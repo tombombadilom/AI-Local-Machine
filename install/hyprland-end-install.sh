@@ -29,6 +29,6 @@
         fi
     done
 
-    cp ../config/config.fish ~/.config/fish/.
-    cp ../config/foot.ini ~/./config/foot/.
-    cp ../config/user_options.js ~/.
+    cp config/config.fish ~/.config/fish/.
+    cp config/foot.ini ~/./config/foot/.
+    cp config/user_options.js ~/.

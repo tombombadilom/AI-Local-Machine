@@ -26,7 +26,7 @@ Dagger functions to import Hugging Face GGUF models into a local ollama instance
 
 ### Local AI
 - [Project WebSite](https://localai.io)
-  - Version for Cudo (NVIDIA)
+  - Version for Cuda (NVIDIA)
   - Version for Rocm (AMD)    
 - [Documentation](https://localai.io/docs/)
 - [GithHub](https://github.com/mudler/LocalAI)
